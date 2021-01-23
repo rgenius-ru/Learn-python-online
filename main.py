@@ -12,7 +12,7 @@ print(img3)
 
 #cv2.imshow('Image 1', img1[:200])
 #cv2.imshow('Image 2', img2)
-cv2.imshow('Image 3', img3[:4])
+cv2.imshow('Image 3', img3[:3])
 
 cv2.waitKey(0)
 
