@@ -1,2 +1,2 @@
-# opencv-contrib-python
-opencv-python
+opencv-contrib-python # For Windows10
+# opencv-python # For Ubuntu 18/20
