@@ -13,6 +13,15 @@ def modify_frame(sourse_img):
     max_color = np.array([100, 100, 255])  # Максимальные значения
 
     mask = cv2.inRange(hsv, min_color, max_color)
+    #cv2.imshow('Mask', mask)
+
+    # Закрашиваем надпись
+    # Usage: cv2.rectangle(image, angle1, angle2, color, thickness)
+    angle1 = (957, 39)  # (x, y)
+    angle2 = (1220, 67)  # (x, y)
+    color = (0, 0, 0)  # (b, g, r)
+    thickness = -1
+    cv2.rectangle(mask, angle1, angle2, color, thickness)  # Создаём квадрат
     cv2.imshow('Mask', mask)
 
     # Создаём контуры
