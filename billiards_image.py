@@ -19,8 +19,8 @@ cv2.imshow('HSV', hsv)
 
 
 # Создаём маску
-min_color = np.array([0, 0, 200])  # Минимальные значения
-max_color = np.array([100, 100, 255])  # Максимальные значения
+min_color = np.array([0, 0, 200])  # Минимальные значения [r, g , b]
+max_color = np.array([100, 100, 255])  # Максимальные значения [r, g , b]
 
 mask = cv2.inRange(hsv, min_color, max_color)
 cv2.imshow('Mask', mask)
