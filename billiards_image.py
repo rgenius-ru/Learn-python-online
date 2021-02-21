@@ -29,17 +29,17 @@ cv2.imshow('Mask', mask)
 # Создаём контуры
 ret, threshold = cv2.threshold(mask, 250, 255, 0)
 contours, hierarchy = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+#
+# count_contours = len(contours)
+#
+# print(f'Всего найдено {count_contours} контуров.')
+#
+# img_with_all_contours = resized_img
+# cv2.drawContours(img_with_all_contours, contours, -1, (255, 0, 0), 2)
+# cv2.imshow('Resized image with all contours', img_with_all_contours)
 
-count_contours = len(contours)
 
-print(f'Всего найдено {count_contours} контуров.')
-
-img_with_all_contours = resized_img
-cv2.drawContours(img_with_all_contours, contours, -1, (0, 0, 255), 2)
-cv2.imshow('Resized image with all contours', img_with_all_contours)
-
-
-# Определяем минимальную площадь контура
+# Находим площадь каждого контура и определяем минимальную площадь
 list_areas = []
 for contour in contours:
     area = cv2.contourArea(contour)
@@ -50,7 +50,7 @@ print(list_areas)
 
 
 # Создаём список только больших контуров
-threshold_area = 150
+threshold_area = 190
 list_big_contours = []
 for contour in contours:
     area = cv2.contourArea(contour)
