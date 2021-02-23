@@ -1,10 +1,10 @@
 import cv2  # OpenCV
 import numpy as np
 
-sourse_img = cv2.imread('Media/Photos/billiards/billiards_small.jpg')  # Исходное изображение
+sourse_img = cv2.imread('Media/Photos/billiards/white-cat.jpg')  # Исходное изображение
 
 # Уменьшаем размер
-scale = 3.0
+scale = 1.0
 resized_img = cv2.resize(sourse_img, None, fx=scale, fy=scale)
 
 
@@ -19,8 +19,8 @@ cv2.imshow('HSV', hsv)
 
 
 # Создаём маску
-min_color = np.array([20, 0, 200])  # Минимальные значения [r_min, g_min, b_min]
-max_color = np.array([255, 100, 255])  # Максимальные значения [r_max, g_max, b_max]
+min_color = np.array([0, 0, 100])  # Минимальные значения [r_min, g_min, b_min]
+max_color = np.array([160, 50, 255])  # Максимальные значения [r_max, g_max, b_max]
 
 mask = cv2.inRange(hsv, min_color, max_color)
 cv2.imshow('Mask', mask)
@@ -50,8 +50,8 @@ print(list_areas)
 
 
 # Создаём список только больших контуров
-threshold_area_min = 1400
-threshold_area_max = 10000
+threshold_area_min = 1000
+threshold_area_max = 100000
 
 list_big_contours = []
 for contour in contours:
@@ -59,12 +59,12 @@ for contour in contours:
     if threshold_area_min < area < threshold_area_max:
         list_big_contours.append(contour)
 
-print(f'Найдено {len(list_big_contours)} контуров, площадью больше {threshold_area_min} и меньше {threshold_area_min}')
+print(f'Найдено {len(list_big_contours)} контуров, площадью больше {threshold_area_min} и меньше {threshold_area_max}')
 
 
 # Выводим контуры на изображении
 img_with_big_contours = resized_img
-cv2.drawContours(img_with_big_contours, list_big_contours, -1, (255, 0, 0), 1)
+cv2.drawContours(img_with_big_contours, list_big_contours, -1, (255, 0, 0), 2)
 cv2.imshow('Resized image with only big contours', img_with_big_contours)
 
 
