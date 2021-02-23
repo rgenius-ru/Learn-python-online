@@ -1,7 +1,7 @@
 import cv2  # OpenCV
 import numpy as np
 
-sourse_img = cv2.imread('Media/Photos/billiards/billiards.png')
+sourse_img = cv2.imread('Media/Photos/billiards/billiards.png')  # Исходное изображение
 
 # Уменьшаем размер
 scale = 0.75
@@ -19,8 +19,8 @@ cv2.imshow('HSV', hsv)
 
 
 # Создаём маску
-min_color = np.array([0, 0, 200])  # Минимальные значения [r, g , b]
-max_color = np.array([100, 100, 255])  # Максимальные значения [r, g , b]
+min_color = np.array([0, 0, 200])  # Минимальные значения [r_min, g_min, b_min]
+max_color = np.array([100, 100, 255])  # Максимальные значения [r_max, g_max, b_max]
 
 mask = cv2.inRange(hsv, min_color, max_color)
 cv2.imshow('Mask', mask)
@@ -29,7 +29,7 @@ cv2.imshow('Mask', mask)
 # Создаём контуры
 ret, threshold = cv2.threshold(mask, 250, 255, 0)
 contours, hierarchy = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-#
+
 # count_contours = len(contours)
 #
 # print(f'Всего найдено {count_contours} контуров.')
