@@ -1,7 +1,7 @@
 import cv2  # OpenCV
 import numpy as np
 
-sourse_img = cv2.imread('Media/Photos/billiards/danger-weapon.jpg')  # Исходное изображение
+sourse_img = cv2.imread('Media/Photos/billiards/white-cat.jpg')  # Исходное изображение
 
 # Уменьшаем размер
 scale = 1.0
@@ -19,8 +19,8 @@ cv2.imshow('HSV', hsv)
 
 
 # Создаём маску
-min_color = np.array([100, 100, 110])  # Минимальные значения [r_min, g_min, b_min]
-max_color = np.array([120, 200, 255])  # Максимальные значения [r_max, g_max, b_max]
+min_color = np.array([0, 0, 112])  # Минимальные значения [r_min, g_min, b_min]
+max_color = np.array([173, 63, 255])  # Максимальные значения [r_max, g_max, b_max]
 
 mask = cv2.inRange(hsv, min_color, max_color)
 cv2.imshow('Mask', mask)
@@ -50,7 +50,7 @@ print(list_areas)
 
 
 # Создаём список только больших контуров
-threshold_area_min = 1000
+threshold_area_min = 5000
 threshold_area_max = 100000
 
 list_big_contours = []
@@ -64,7 +64,7 @@ print(f'Найдено {len(list_big_contours)} контуров, площадь
 
 # Выводим контуры на изображении
 img_with_big_contours = resized_img
-cv2.drawContours(img_with_big_contours, list_big_contours, -1, (0, 0, 255), 2)
+cv2.drawContours(img_with_big_contours, list_big_contours, -1, (255, 0, 0), 4)
 cv2.imshow('Resized image with only big contours', img_with_big_contours)
 
 
