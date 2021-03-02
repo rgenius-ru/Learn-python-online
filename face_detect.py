@@ -1,11 +1,11 @@
 import cv2
 
 
-img = cv2.imread('Media/Photos/lighting-happy2.jpg')
+img = cv2.imread('Media/Photos/task2/image4.jpg')
 
 
 # Уменьшаем размер
-scale = 0.5
+scale = 1.0
 img = cv2.resize(img, None, fx=scale, fy=scale)
 # cv2.imshow('Source image', img)
 
