@@ -56,8 +56,12 @@ def update_mask_image():
     mask = cv2.inRange(hsv, min_color, max_color)
     cv2.imshow('Mask', mask)
 
+    global img
+    masked_img = cv2.bitwise_and(img, img, mask=mask)
+    cv2.imshow('Masked image', masked_img)
 
-img = cv2.imread('Media/Photos/billiards/white-cat.jpg')
+
+img = cv2.imread('Media/Photos/billiards/danger-weapon.jpg')
 
 
 # Конвертируем в цветовое пространство HSV
