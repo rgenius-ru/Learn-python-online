@@ -1,5 +1,5 @@
 import cv2
-
+# https://github.com/opencv/opencv/tree/master/data/haarcascades
 
 img = cv2.imread('Media/Photos/task2/image4.jpg')
 
@@ -22,7 +22,7 @@ print('Number of faces found = ', len(faces_rect))
 
 
 for (x, y, w, h) in faces_rect:
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), thickness=2)
+    cv2.rectangle(img, (x, y), (x+w, y+h), (150, 255, 60), thickness=4)
 
 cv2.imshow('Detected faces', img)
 
