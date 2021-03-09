@@ -5,7 +5,7 @@ import cv2
 image_rgb = cv2.imread('Media/Photos/car.jpg')
 
 # Изменяем размер исходного изображения
-scale = 0.5  # В долях процента
+scale = 0.5  # Масштаб в долях процента
 image_rgb = cv2.resize(image_rgb, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)  # Изменение размера
 # cv2.imshow('Image', image_color)  # Вывод исходного изображения
 
@@ -27,8 +27,8 @@ def car_plate_detect(image):
     :param image: изображение в любом цветовом пространстве
     :return: возвращает исходное изображение с наложенными прямоугольниками найденных номеров
     """
-    img_copy = image.copy()  # Копируем исходное в новую переменую
-    car_plate_rects = cascade_table.detectMultiScale(  # Функция библиотеки opencv детекции объекта
+    img_copy = image.copy()  # Копируем исходное изображение в новую переменую
+    car_plate_rects = cascade_table.detectMultiScale(  # Функция библиотеки opencv для детекции объекта
         img_copy,  # Копия изображения
         scaleFactor=1.1,  # Коэффициент увеличения (min = 1.1)
         minNeighbors=3  # Коэффициент нахождения объекта минимального размера
