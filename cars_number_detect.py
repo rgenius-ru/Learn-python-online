@@ -40,8 +40,7 @@ def car_plate_detect(image):
     return img_copy  # озвращает изображение с наложенными прямоугольниками найденных объектов
 
 
-# Вызываем функция детекции гос номера автомобиля
-result_img = car_plate_detect(image_rgb)  # image_rgb
+result_img = car_plate_detect(image_rgb)  # Вызываем функция детекции гос номера автомобиля
 cv2.imshow('Detect', result_img)  # Выводим изображение на экран
 
 cv2.waitKey(0)  # Ожидаем нажатия клавиши до выхода
