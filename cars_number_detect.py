@@ -1,32 +1,47 @@
+# Импортируем библиотеку opencv
 import cv2
 
-image_color = cv2.imread('Media/Photos/car.jpg')
+# Открывает
+image_rgb = cv2.imread('Media/Photos/car.jpg')
 
-scale = 0.5
-image_color = cv2.resize(image_color, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
-
-cv2.imshow('Image', image_color)
-
-image_gray = cv2.cvtColor(image_color, cv2.COLOR_BGR2GRAY)  # cvt - convert
-cv2.imshow('Gray', image_gray)
-
-image_rgb = cv2.cvtColor(image_color, cv2.COLOR_BGR2RGB)
-
-# Import Haar Cascade XML file for Russian car plate numbers
-carplate_haar_cascade = cv2.CascadeClassifier('haarcascade_russian_plate_number.xml')
+# Изменяем размер исходного изображения
+scale = 0.5  # В долях процента
+image_rgb = cv2.resize(image_rgb, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)  # Изменение размера
+# cv2.imshow('Image', image_color)  # Вывод исходного изображения
 
 
-# Setup function to detect car plate
-def carplate_detect(image):
-    carplate_overlay = image.copy()
-    carplate_rects = carplate_haar_cascade.detectMultiScale(carplate_overlay, scaleFactor=1.1, minNeighbors=3)
-    for x, y, w, h in carplate_rects:
-        cv2.rectangle(carplate_overlay, (x, y), (x + w, y + h), (255, 0, 0), 5)
-
-    return carplate_overlay
+# image_gray = cv2.cvtColor(image_rgb, cv2.COLOR_BGR2GRAY)  # cvt - convert  # Преобразовываем в серый цвет
+# cv2.imshow('Gray', image_gray) # Вывод серого изображения
 
 
-detected_carplate_img = carplate_detect(image_rgb)
-cv2.imshow('Detect', detected_carplate_img)
+# image_rgb = cv2.cvtColor(image_color, cv2.COLOR_BGR2RGB) # преобразование BGR в RGB
 
-cv2.waitKey(0)
+
+# Загружаем касадную таблицу
+cascade_table = cv2.CascadeClassifier('haarcascade_russian_plate_number.xml')
+
+
+# Создаём функцию детекции гос номера автомобиля
+def car_plate_detect(image):
+    """
+    :param image: изображение в любом цветовом пространстве
+    :return: возвращает исходное изображение с наложенными прямоугольниками найденных номеров
+    """
+    img_copy = image.copy()  # Копируем исходное в новую переменую
+    car_plate_rects = cascade_table.detectMultiScale(  # Функция библиотеки opencv детекции объекта
+        img_copy,  # Копия изображения
+        scaleFactor=1.1,  # Коэффициент увеличения (min = 1.1)
+        minNeighbors=3  # Коэффициент нахождения объекта минимального размера
+    )  # Возвращает прямоугольники найденных объектов (номеров)
+
+    for x, y, w, h in car_plate_rects:  # Для каждого прямоугольника
+        cv2.rectangle(img_copy, (x, y), (x + w, y + h), (255, 0, 0), 5)  # Рисуем прямоугольники
+
+    return img_copy  # озвращает изображение с наложенными прямоугольниками найденных объектов
+
+
+# Вызываем функция детекции гос номера автомобиля
+result_img = car_plate_detect(image_rgb)  # image_rgb
+cv2.imshow('Detect', result_img)  # Выводим изображение на экран
+
+cv2.waitKey(0)  # Ожидаем нажатия клавиши до выхода
