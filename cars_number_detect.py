@@ -2,10 +2,10 @@
 import cv2
 
 # Открываем изображение
-image_rgb = cv2.imread('Media/Photos/car.jpg')
+image_rgb = cv2.imread('Media/Photos/car3.png')
 
 # Изменяем размер исходного изображения
-scale = 0.5  # Масштаб в долях процента
+scale = 0.75  # Масштаб в долях процента
 image_rgb = cv2.resize(image_rgb, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)  # Изменение размера
 # cv2.imshow('Image', image_color)  # Вывод исходного изображения
 
@@ -31,13 +31,13 @@ def car_plate_detect(image):
     car_plate_rects = cascade_table.detectMultiScale(  # Функция библиотеки opencv для детекции объекта
         img_copy,  # Копия изображения
         scaleFactor=1.1,  # Коэффициент увеличения (min = 1.1)
-        minNeighbors=3  # Коэффициент нахождения объекта минимального размера
+        minNeighbors=1  # Коэффициент нахождения объекта минимального размера
     )  # Возвращает прямоугольники найденных объектов (номеров)
 
     for x, y, w, h in car_plate_rects:  # Для каждого прямоугольника
         cv2.rectangle(img_copy, (x, y), (x + w, y + h), (255, 0, 0), 5)  # Рисуем прямоугольники
 
-    return img_copy  # озвращает изображение с наложенными прямоугольниками найденных объектов
+    return img_copy  # Возвращает изображение с наложенными прямоугольниками найденных объектов
 
 
 result_img = car_plate_detect(image_rgb)  # Вызываем функция детекции гос номера автомобиля
