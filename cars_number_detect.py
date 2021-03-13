@@ -2,7 +2,7 @@
 import cv2
 
 # Открываем изображение
-image_rgb = cv2.imread('Media/Photos/car3.png')
+image_rgb = cv2.imread('Media/Photos/car.jpg')
 
 # Изменяем размер исходного изображения
 scale = 0.75  # Масштаб в долях процента

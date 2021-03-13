@@ -8,11 +8,11 @@ import cv2
 def modify_frame(img, scale=1.0):
     # Изменяем размер исходного изображения
     # scale - Масштаб в долях процента
-    img = cv2.resize(img, None, fx=scale, fy=scale)  # Изменение размера
+    if scale != 1.0:
+        img = cv2.resize(img, None, fx=scale, fy=scale)  # Изменение размера
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Преобразовываем в серый цвет
 
-    haar_cascade = cv2.CascadeClassifier('haar_face.xml')  # Загружаем касадную таблицу
     faces_rect = haar_cascade.detectMultiScale(  # Функция библиотеки opencv для детекции объекта
         gray,  # Изображение
         scaleFactor=1.1,  # Коэффициент увеличения (min = 1.1)
@@ -26,6 +26,8 @@ def modify_frame(img, scale=1.0):
 
     return img  # Возвращает изображение с наложенными прямоугольниками найденных объектов
 
+
+haar_cascade = cv2.CascadeClassifier('haar_face.xml')  # Загружаем касадную таблицу
 
 # Читаем видеопоток в бесконечном цикле
 while True:
