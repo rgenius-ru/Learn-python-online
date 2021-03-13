@@ -5,16 +5,12 @@
 import cv2
 
 
-def modify_frame(_img, scale=1.0):
-    img_copy = _img.copy()  # Копируем исходное изображение в новую переменую
-
+def modify_frame(img, scale=1.0):
     # Изменяем размер исходного изображения
-    # scale = 1.0  # Масштаб в долях процента
-    img_copy = cv2.resize(img_copy, None, fx=scale, fy=scale)  # Изменение размера
-    # cv2.imshow('Source image', img)  # Вывод исходного изображения
+    # scale - Масштаб в долях процента
+    img = cv2.resize(img, None, fx=scale, fy=scale)  # Изменение размера
 
-    gray = cv2.cvtColor(img_copy, cv2.COLOR_BGR2GRAY)  # Преобразовываем в серый цвет
-    # cv2.imshow('Gray', gray)  # Вывод серого изображения
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Преобразовываем в серый цвет
 
     haar_cascade = cv2.CascadeClassifier('haar_face.xml')  # Загружаем касадную таблицу
     faces_rect = haar_cascade.detectMultiScale(  # Функция библиотеки opencv для детекции объекта
@@ -26,9 +22,9 @@ def modify_frame(_img, scale=1.0):
     print('Number of faces found = ', len(faces_rect))  # Выводим количество найденных лиц
 
     for (x, y, w, h) in faces_rect:  # Для каждого прямоугольника
-        cv2.rectangle(img_copy, (x, y), (x+w, y+h), (150, 255, 60), thickness=4)  # Рисуем прямоугольники
+        cv2.rectangle(img, (x, y), (x+w, y+h), (150, 255, 60), thickness=4)  # Рисуем прямоугольники
 
-    return img_copy
+    return img  # Возвращает изображение с наложенными прямоугольниками найденных объектов
 
 
 # Читаем видеопоток в бесконечном цикле
