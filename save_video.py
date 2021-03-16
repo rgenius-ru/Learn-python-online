@@ -17,8 +17,8 @@ else:
     # Размер изображения на основе разрешения (высоты и ширины кадра)
     size = (frame_width, frame_height)
 
-    # Создаём переменную (объект) VideoWriter чтобы в дальнейшем в неё
-    # сохранять кадры в файл 'result_filename.avi'.
+    # Создаём переменную (объект) VideoWriter чтобы в дальнейшем
+    # с её помощью сохранять кадры в файл 'result_filename.avi'.
     result = cv2.VideoWriter(
         'Media/Videos/result_filename.avi',  # Файл для сохраниения
         cv2.VideoWriter_fourcc(*'MJPG'),  # Кодек видео
