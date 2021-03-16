@@ -22,7 +22,7 @@ else:
     result = cv2.VideoWriter(
         'Media/Videos/result_filename.avi',  # Файл для сохраниения
         cv2.VideoWriter_fourcc(*'MJPG'),  # Кодек видео
-        fps=10,  # frame per second
+        fps=24,  # frame per second
         frameSize=size  # Размер видео
     )
 
