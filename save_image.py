@@ -2,7 +2,6 @@
 
 # Импортируем библиотеки (модули)
 import cv2
-import os
 
 # Открываем изображение
 img = cv2.imread('Media/Photos/lighting-happy2.jpg')
@@ -11,6 +10,6 @@ img = cv2.imread('Media/Photos/lighting-happy2.jpg')
 
 
 # Сохраняем изображение
-cv2.imwrite('Media/Photos/result-image.jpg', img)
+cv2.imwrite('Media/Photos/result-image.jpg', img)  # imread imshow
 
 print('Изображение сохранено успешно')

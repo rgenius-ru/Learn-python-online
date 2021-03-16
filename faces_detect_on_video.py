@@ -15,7 +15,7 @@ def modify_frame(img, scale=1.0):
 
     faces_rect = haar_cascade.detectMultiScale(  # Функция библиотеки opencv для детекции объекта
         gray,  # Изображение
-        scaleFactor=1.1,  # Коэффициент увеличения (min = 1.1)
+        scaleFactor=1.2,  # Коэффициент увеличения (min = 1.1)
         minNeighbors=10  # Коэффициент нахождения объекта минимального размера
     )  # Возвращает прямоугольники найденных объектов (номеров)
 
